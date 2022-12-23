@@ -1,2 +1,4 @@
 # redux
-master state management with redux
+## Redux functions are 
+![redux functions ](functions.png)
+

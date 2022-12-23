@@ -1,0 +1,11 @@
+{
+  "name": "redux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mohamed267/redux.git",
+  "author": "mohamed267 <m.rabahsidhoum@esi-sba.dz>",
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^4.2.0"
+  }
+}
