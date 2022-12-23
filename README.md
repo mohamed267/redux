@@ -6,4 +6,5 @@
 ***
 ![redux functions ](./functionsredux.png)
 ## composer
+> composer simply do combining the function specifiied as parameters to create a new function . 
 
