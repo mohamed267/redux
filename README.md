@@ -66,6 +66,7 @@ store.subscribe(subscriber)
 >We can simplify dispatching action by serializing it and bid the actions in a object
 
 ```
+import {bindActionCreators} from "redux"
 const actions = bindActionCreators({ increment , clear } , store.dispatch)
 actions.increment()
 actions.clear()
@@ -79,3 +80,85 @@ const [increment , clear] = [increment , add].map(func=>compose(store.dispatch ,
 
 ```
 
+
+
+## Combine Reducers
+
+>we has a nested store has to arrays users and task it begin to be hard to handling this data structure and for bigger project it become more  way harder
+
+```
+const { createStore  } = require("redux");
+
+const ADDUSER = "ADDUSER"
+const ADDTASK = "ADDTASK"
+const initialState = {
+    users : [], 
+    tasks: []
+
+};
+const reducer  = (state =initialState, action)=>{
+    if(action.type=ADDUSER){
+        return ({
+            ...state,
+            users : [
+                ...state.users , 
+                payload
+            ]
+        })
+    }
+
+    if(action.type=ADDTASK){
+        return ({
+            ...state,
+            tasks : [
+                ...state.tasks , 
+                payload
+            ]
+        })
+    }
+    return state;
+}
+
+const store  =  createStore(reducer)
+
+
+```
+
+> we can crate two reducers one for the users and the other  fo the tasks  and combining them into one reducer using "combineReducers"
+
+````
+import {combineReducers} from "reduc"
+const userReducer  = (state =initialState.users, action)=>{
+    if(action.type=ADDUSER){
+        return (
+            [
+                ...state.users , 
+                payload
+            ]
+        )
+    }
+
+   
+    return state;
+}
+
+const taskReducer  = (state =initialState.tasks, action)=>{
+    if(action.type=ADDTASK){
+        return ( 
+            [
+                ...state.tasks , 
+                payload
+            ]
+            )
+    }
+    return state;
+}
+
+const reducer =  combineReducers(
+    {
+        users : userReducer , 
+        tasks : taskReducer
+    }
+)
+
+const store  =  createStore(reducer)```
