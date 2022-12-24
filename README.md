@@ -128,30 +128,30 @@ const store  =  createStore(reducer)
 
 ````
 import {combineReducers} from "reduc"
-const userReducer  = (state =initialState.users, action)=>{
+const userReducer  = (users =initialState.users, action)=>{
     if(action.type=ADDUSER){
         return (
             [
-                ...state.users , 
+                ...users , 
                 payload
             ]
         )
     }
 
    
-    return state;
+    return users;
 }
 
-const taskReducer  = (state =initialState.tasks, action)=>{
+const taskReducer  = (tasks =initialState.tasks, action)=>{
     if(action.type=ADDTASK){
         return ( 
             [
-                ...state.tasks , 
+                ...tasks , 
                 payload
             ]
             )
     }
-    return state;
+    return tasks;
 }
 
 const reducer =  combineReducers(
@@ -161,4 +161,8 @@ const reducer =  combineReducers(
     }
 )
 
-const store  =  createStore(reducer)```
+const store  =  createStore(reducer)
+
+```
+
+>like this we can handle the user seperately from the tasks therefor it still the same global state ,
