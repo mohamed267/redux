@@ -4,6 +4,7 @@
 2. [composer](#composer)
 3. [Create store](#create-store)
 4. [Subscribe](#subscribe)
+5. [Bind Actions Creator](#bind-actions-reator)
 ## Redux Functions:
 ***
 ![redux functions ](./functionsredux.png)
@@ -60,7 +61,7 @@ const subscriber = ()=>console.log("SUBSCRIBER",store.getState())
 store.subscribe(subscriber)
 ```
 
-## Bind Action Creator 
+## Bind Actions Creator
 
 >We can simplify dispatching action by serializing it and bid the actions in a object
 
