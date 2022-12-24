@@ -66,7 +66,7 @@ store.subscribe(subscriber)
 >We can simplify dispatching action by serializing it and bid the actions in a object
 
 ```
-const actions = bindActionCreators({ increment , cleat } , store.dispatch)
+const actions = bindActionCreators({ increment , clear } , store.dispatch)
 actions.increment()
 actions.clear()
 
