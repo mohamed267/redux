@@ -3,6 +3,7 @@
 1. [Redux functions](#redux-functions)
 2. [composer](#composer)
 3. [Create store](#create-store)
+4. [Subscribe](#subscribe)
 ## Redux Functions:
 ***
 ![redux functions ](./functionsredux.png)
@@ -49,5 +50,24 @@ const increment =  ()=>{
 }
 
 store.dispatch(increment())
+```
+
+## Subscriber 
+>when the any event are triggered the subscrier listenner will be called
+
+```
+const subscriber = ()=>console.log("SUBSCRIBER",store.getState())
+store.subscribe(subscriber)
+```
+
+## Bind Action Creator 
+
+>We can simplify dispatching action by serializing it and bid the actions in a object
+
+```
+const actions = bindActionCreators({ increment , cleat } , store.dispatch)
+actions.increment()
+actions.clear()
+
 ```
 
