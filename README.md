@@ -72,3 +72,10 @@ actions.clear()
 
 ```
 
+>another alternative is to use compose
+
+```
+const [increment , clear] = [increment , add].map(func=>compose(store.dispatch , func))
+
+```
+
