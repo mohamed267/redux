@@ -4,7 +4,7 @@
 2. [composer](#composer)
 3. [Create store](#create-store)
 4. [Subscribe](#subscribe)
-5. [Bind Actions Creator](#bind-actions-reator)
+5. [Bind Actions Creator](#bind-actions-creator)
 ## Redux Functions:
 ***
 ![redux functions ](./functionsredux.png)
