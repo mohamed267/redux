@@ -54,14 +54,16 @@ export default App;
 > first hook is useActions  so that we can compose all actios with the dispatch function
 
 ```jsx
+import {useMemo} from "react"
 import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux";
 
 export const useActions = (actions)=>{
     const dispatch =  useDispatch();
-
-    return bindActionCreators(actions , dispatch)
+    return useMemo(() =>  bindActionCreators(actions , dispatch) , [actions , dispatch] )
 }
+
+>use Memo is used for caching the result if the actions and dispatch are the same  we dont need to recalculate  the result
 
 ```
 > second hook is use counter that contain the logic for the counter
