@@ -5,6 +5,7 @@
 3. [Create store](#create-store)
 4. [Subscribe](#subscribe)
 5. [Bind Actions Creator](#bind-actions-creator)
+6. [Enhancer](#enhancer)
 ## Redux Functions:
 ***
 ![redux functions ](./functionsredux.png)
@@ -126,7 +127,7 @@ const store  =  createStore(reducer)
 
 > we can crate two reducers one for the users and the other  fo the tasks  and combining them into one reducer using "combineReducers"
 
-````
+```
 import {combineReducers} from "reduc"
 const userReducer  = (users =initialState.users, action)=>{
     if(action.type=ADDUSER){
@@ -165,4 +166,33 @@ const store  =  createStore(reducer)
 
 ```
 
->like this we can handle the user seperately from the tasks therefor it still the same global state ,
+>like this we can handle the user seperately from the tasks every one has its one state  therefor they still combined on the  same global state ,
+
+## Enhancer
+> enhancer is the third parameters  of the createStore function;
+![Enhancer](./enhancer.png)
+
+>example of an enhancer that calculate the time of everu action
+
+```
+
+const monitorEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
+    const monitorReducer = (state , action) =>{
+        const start =performance.now()
+        const newState =  reducer(state);
+        const end  = performance.now()
+        const diff = end -  start
+        console.log("diff ", diff)
+
+        return  newState
+    }
+     
+
+    return createStore(monitorReducer , initialState , enhancer)
+
+}
+
+const store  =  createStore(reducer ,initialState ,monitorEnhancer)
+
+
+```
