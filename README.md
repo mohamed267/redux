@@ -6,6 +6,7 @@
 4. [Subscribe](#subscribe)
 5. [Bind Actions Creator](#bind-actions-creator)
 6. [Enhancer](#enhancer)
+7. [Middleware](#middleware)
 ## Redux Functions:
 ***
 ![redux functions ](./functionsredux.png)
@@ -228,7 +229,7 @@ const store  =  createStore(reducer ,initialState , compose(monitorEnhancer, log
     load state  , dispatch actions  , undo , redo  ...etc
 )
 if we want to modify how dispatch  action  work  we use middlewares (
-    example do async call
+    example do async call 
 )
 
 ```
@@ -242,6 +243,15 @@ const  logMiddleware = store=>next=>action=>{
 
 const store  =  createStore(reducer ,initialState , 
     applyMiddleware(logMiddleware)
+    
+)
+```
+
+> applyMiddle accept a list of middlewares that will be chains each other as an arguments
+
+```
+const store  =  createStore(reducer ,initialState , 
+    applyMiddleware(logMiddleware , monitorMiddleware)
     
 )
 ```
