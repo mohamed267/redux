@@ -6,6 +6,7 @@ import NewItemCard from './components/NewItemCard';
 import ItemsComponent from './components/ItemsComponent';
 import { ItemsContainer } from './containers/itemsContainer';
 import { NewItemContainer } from './containers/newItmeConmtainer';
+import {SummaryContainer} from './containers/summaryContainer'
 
 const  items = [
   {name : "tafou" }
@@ -28,6 +29,7 @@ function App() {
       >
         <NewItemContainer />
       <ItemsContainer />
+      <SummaryContainer />
 
       </Stack>
 

@@ -3,6 +3,7 @@
 1. [React Redux](#react-redux)
 2. [Bind Actions](#bind-actions)
 3. [Api Connect](#connect)
+4. [Deep diving](#deep-diving)
 ## REACT REDUX
 
 > react redux is an intermediary from  react and redux so you can you can use redux as a global store for your react app
@@ -123,3 +124,32 @@ export const NewItemContainer = connect(
 
 > we can pass the dispatch function itself or we can esulate the store roles and pass onSubmit function that will be called when needed like thatwe are completely esolating  the component from the store logic
 > items  and onSumit  will be passed as props to the Component 
+
+
+## Deep Diving
+
+> as long as  the store tree got bigger calculation will become  expensive for that we  can use some util for caching data so that we will use "reselect"
+
+```jsx
+import {createSelector} from "reselect"
+
+const items =  state=> state.items
+
+export const total = createSelector([items] , items=>items.reduce((prev, curr)=>{
+    return (curr.quantity * curr.price + prev)
+} , 0)
+)
+
+
+```
+
+```jsx
+import { total } from "./selectore"
+
+
+
+const mapStateToProps = (state)=>({
+    total :  total(state)
+})
+
+```

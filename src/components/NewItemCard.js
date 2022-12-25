@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Input , FormControl , FormLabel  ,Stack , Button} from "@chakra-ui/react"
 import { itemAdded } from '../actions'
 
-const NewItemCard = ({dispatch , onSubmit}) => {
+const NewItemCard = ({ onSubmit}) => {
     const [data , setData] =  useState({
         name : "", 
         price: ""
@@ -11,10 +11,14 @@ const NewItemCard = ({dispatch , onSubmit}) => {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        dispatch(itemAdded(
+        onSubmit(
             data.name , 
             data.price
-        ))
+        )
+        setData({
+            name : "", 
+            price: ""
+        })
     }
   return (
     <form
@@ -35,7 +39,7 @@ const NewItemCard = ({dispatch , onSubmit}) => {
                 <FormLabel> price </FormLabel>
                 <Input 
                     value={data.price}
-                    onChage={(e)=>setData({...data , price : e.target.value})}
+                    onChange={(e)=>setData({...data , price : e.target.value})}
                 />
             </FormControl>
             <Button
