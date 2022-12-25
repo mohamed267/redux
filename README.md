@@ -220,3 +220,28 @@ const logEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
 ```
 const store  =  createStore(reducer ,initialState , compose(monitorEnhancer, logEnhancer))
 ```
+
+## Middleware
+
+
+> Enhacers used for modifying the overall implementation of the store  (
+    load state  , dispatch actions  , undo , redo  ...etc
+)
+if we want to modify how dispatch  action  work  we use middlewares (
+    example do async call
+)
+
+```
+
+const  logMiddleware = store=>next=>action=>{
+    console.log("old State " , action , store.getState())
+    next(action)
+    console.log("new State " , action , store.getState())
+
+}
+
+const store  =  createStore(reducer ,initialState , 
+    applyMiddleware(logMiddleware)
+    
+)
+```
