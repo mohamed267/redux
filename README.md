@@ -1,6 +1,7 @@
 # redux
 ## Table of Contents
 1. [React Redux](#react-redux)
+2. [Bind Actions](#bind-actions)
 ## REACT REDUX
 
 > react redux is an intermediary from  react and redux so you can you can use redux as a global store for your react app
