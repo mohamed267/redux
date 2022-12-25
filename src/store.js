@@ -6,6 +6,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 export const store  = createStore(
     reducer , 
-    {count :  0} , 
+    {items :  [{name : "ayoub"}]} , 
     composeWithDevTools()
 )

@@ -1,18 +1,23 @@
 /* eslint-disable no-fallthrough */
-import { DECREMENT, INCREMENT, RESET } from "./actions"
+import { ITEMADDED } from "./actions"
 
-
-export const initialState = { count: 0}
+let id = 1;
+export const initialState = { items: [{name : "ayoub"}]}
 
 export const reducer = (state=initialState , action)=>{
-    console.log("state stroggered");
     switch(action.type){
-        case INCREMENT :
-            return ({...state , count : state.count + 1})
-        case DECREMENT : 
-            return ({...state , count : state.count - 1})
-        case RESET : 
-            return ({...state , count : 0})
+        case ITEMADDED :
+            return ({
+                ...state, 
+                items : [
+                    ...state.items , 
+                    {
+                        uuid: id++,
+                        ...action.payload
+                    }
+
+                ]
+            })
         default :
             break;
 

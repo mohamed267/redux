@@ -2,6 +2,7 @@
 ## Table of Contents
 1. [React Redux](#react-redux)
 2. [Bind Actions](#bind-actions)
+3.[Api Connect]("#connect")
 ## REACT REDUX
 
 > react redux is an intermediary from  react and redux so you can you can use redux as a global store for your react app
@@ -87,3 +88,38 @@ const useCounter = ()=>{
 
 
 ```
+
+## Connect
+
+> we can use higer order function to pass the state using the connect function
+
+
+```jsx
+
+import {connect} from "react-redux"
+
+const mapDispatchToProps = (dispatch)=>{
+    return bindActionCreators(
+        {
+            onSubmit : (price , name)=>{
+                dispatch(itemAdded(name , price))
+            }
+        },
+        dispatch
+        
+    )
+}
+
+const mapStateToProps = (state)=>({
+    items: state.items
+})
+
+export const NewItemContainer = connect(
+    mapStateToProps , 
+    mapDispatchToProps
+)(Component)
+
+```
+
+> we can pass the dispatch function itself or we can esulate the store roles and pass onSubmit function that will be called when needed like thatwe are completely esolating  the component from the store logic
+> items  and onSumit  will be passed as props to the Component 
