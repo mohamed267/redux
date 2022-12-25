@@ -1,4 +1,4 @@
-const { createStore, combineReducers  } = require("redux");
+const { createStore, combineReducers, compose  } = require("redux");
 
 const ADDUSER = "ADDUSER"
 const ADDTASK = "ADDTASK"
@@ -40,10 +40,10 @@ const logEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
 
     }
 
-    return createStore(logReducer , initialState , enhancer)
+    return createStore(logReducer , initialState ,  enhancer)
 }
 
-const store  =  createStore(reducer ,initialState ,logEnhancer)
+const store  =  createStore(reducer ,initialState , compose(monitorEnhancer, logEnhancer))
 
 store.dispatch({type : "INCREMENT"})
 

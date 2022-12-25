@@ -214,3 +214,9 @@ const logEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
     return createStore(logReducer , initialState , enhancer)
 }
 ```
+
+> We can use  both monitor and logEnhancer by using the compose function
+
+```
+const store  =  createStore(reducer ,initialState , compose(monitorEnhancer, logEnhancer))
+```
