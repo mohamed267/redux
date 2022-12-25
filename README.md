@@ -155,7 +155,7 @@ const mapStateToProps = (state)=>({
 
 ```
 
-## Muttable Immer
+## Mutable Immer
 
 > instead of  chaging state immutabely 
 
