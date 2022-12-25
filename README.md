@@ -169,7 +169,7 @@ const store  =  createStore(reducer)
 >like this we can handle the user seperately from the tasks every one has its one state  therefor they still combined on the  same global state ,
 
 ## Enhancer
-> enhancer is the third parameters  of the createStore function;
+> enhancer is the third parameters  of the createStore function , it look like a plugin that do some jobs before the actions ;
 ![Enhancer](./enhancer.png)
 
 >example of an enhancer that calculate the time of everu action
@@ -195,4 +195,22 @@ const monitorEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
 const store  =  createStore(reducer ,initialState ,monitorEnhancer)
 
 
+```
+
+>This enhancer (logEnhancer) will log the state before and after the actions
+
+```
+
+const logEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
+    const logReducer= (state , action)=>{
+        console.log("old State " , state , action)
+        const newState =  reducer(state , action);
+        console.log("new State " , newState , action)
+
+        return newState
+
+    }
+
+    return createStore(logReducer , initialState , enhancer)
+}
 ```

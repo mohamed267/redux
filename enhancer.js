@@ -20,13 +20,32 @@ const monitorEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
 
         return  newState
     }
+
+    
+
+    
      
 
     return createStore(monitorReducer , initialState , enhancer)
 
 }
 
-const store  =  createStore(reducer ,initialState ,monitorEnhancer)
+const logEnhancer = (createStore)=>(reducer , initialState , enhancer)=>{
+    const logReducer= (state , action)=>{
+        console.log("old State " , state , action)
+        const newState =  reducer(state , action);
+        console.log("new State " , newState , action)
+
+        return newState
+
+    }
+
+    return createStore(logReducer , initialState , enhancer)
+}
+
+const store  =  createStore(reducer ,initialState ,logEnhancer)
+
+store.dispatch({type : "INCREMENT"})
 
 
 
