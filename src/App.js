@@ -1,10 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import {decrement, increment, reset} from "./actions"
-import { useActions } from './useActions';
 import { useCounter } from '@chakra-ui/react';
 
 function App() {
