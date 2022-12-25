@@ -4,6 +4,7 @@
 2. [Bind Actions](#bind-actions)
 3. [Api Connect](#connect)
 4. [Deep diving](#deep-diving)
+5. [Mutable immer](#mutable-immer)
 ## REACT REDUX
 
 > react redux is an intermediary from  react and redux so you can you can use redux as a global store for your react app
@@ -153,3 +154,37 @@ const mapStateToProps = (state)=>({
 })
 
 ```
+
+## Muttable Immer
+
+> instead of  chaging state immutabely 
+
+```jsx
+ return ({
+                ...state, 
+                items : [
+                    ...state.items , 
+                    {
+                        uuid: id++,
+                        quantity: 1, 
+                        ...action.payload
+                    }
+
+                ]
+            })
+```
+
+> we can use immer for  chaging data mutably
+
+```jsx
+produce(state , (draftState)=>{
+                draftState.items.push({
+                    uuid: id++,
+                    quantity: 1, 
+                    ...action.payload
+                })
+            })
+
+```
+
+>produce is a function that come out form immer

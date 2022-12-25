@@ -1,4 +1,5 @@
 /* eslint-disable no-fallthrough */
+import {produce} from "immer"
 import { ITEMADDED, ITEMREMOVED, PRICEUPDATED, QUANTITYUPDATED, updateItem, updatePrice } from "./actions"
 
 let id = 1;
@@ -7,18 +8,14 @@ export const initialState = { items: [{name : "ayoub"}]}
 export const reducer = (state=initialState , action)=>{
     switch(action.type){
         case ITEMADDED :
-            return ({
-                ...state, 
-                items : [
-                    ...state.items , 
-                    {
-                        uuid: id++,
-                        quantity: 1, 
-                        ...action.payload
-                    }
-
-                ]
+            return produce(state , (draftState)=>{
+                draftState.items.push({
+                    uuid: id++,
+                    quantity: 1, 
+                    ...action.payload
+                })
             })
+            
         case ITEMREMOVED:
             return {
                 items : state.items.filter(item=>(
