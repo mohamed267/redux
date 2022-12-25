@@ -4,18 +4,20 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {decrement, increment, reset} from "./actions"
+import { useActions } from './useActions';
+import { useCounter } from '@chakra-ui/react';
 
 function App() {
-  const counter =  useSelector(state=>state.count)
-  const dispatch =  useDispatch()
+  const {count , increment , decrement , reset} =  useCounter()
+ 
   return (
     <div>
-      <p>{counter}</p>
+      <p>{count}</p>
 
       <div>
-        <button onClick={()=>{dispatch(decrement())}}  >decrement</button>
-        <button  onClick={()=>{dispatch(reset())}}  >reset</button>
-        <button onClick={()=>{dispatch(increment())}}  >increment</button>
+        <button onClick={()=>decrement()}  >decrement</button>
+        <button  onClick={()=>reset()}  >reset</button>
+        <button onClick={()=>increment()}  >increment</button>
       </div>
     
     </div>

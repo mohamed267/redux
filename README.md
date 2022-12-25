@@ -7,7 +7,7 @@
 
 
 > for setting app redux on react we need to  wrap our app with a REDUX provider and pass the store as a parameter
-```
+```js
   import {Provider} from "react-redux"
   <Provider
     store={store}
@@ -20,7 +20,7 @@
 > so like that we can access the store on the app by using the useSelector function and dispatch actions using useDispatch
 
 
-```
+```jsx
 import { useDispatch, useSelector } from 'react-redux';
 
 import {decrement, increment, reset} from "./actions"
@@ -43,5 +43,44 @@ function App() {
 }
 
 export default App;
+
+```
+
+
+
+## bind actions 
+
+> for making  it more flexibla and reusible we can create some hooks 
+> first hook is useActions  so that we can compose all actios with the dispatch function
+
+```jsx
+import { useDispatch } from "react-redux"
+import { bindActionCreators } from "redux";
+
+export const useActions = (actions)=>{
+    const dispatch =  useDispatch();
+
+    return bindActionCreators(actions , dispatch)
+}
+
+```
+> second hook is use counter that contain the logic for the counter
+
+```jsx
+const useCounter = ()=>{
+    const count =  useSelector(state=>state.count)
+    const dispatch =  useDispatch()
+    const actions = useActions({increment , decrement , reset})
+    return (
+        {
+            count , 
+            ...actions
+        }
+    )
+
+
+}
+
+
 
 ```
